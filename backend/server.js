@@ -1,6 +1,10 @@
-import express from "express";
+import 'dotenv/config';
+import express,{ urlencoded } from "express";
+import connectDB from './utils/db.js';
+import cookieParser from 'cookie-parser';
+import cors from "cors";
 
-const PORT = 8000;
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.get("/ap/v1/healthy",(req,res)=>{
@@ -10,6 +14,18 @@ app.get("/ap/v1/healthy",(req,res)=>{
     });
 });
 
+//Middelwares
+
+app.use(express.json());
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
+const corsOption ={
+    origin: ['http:/localhost:3000'],
+    credentials: true
+};
+app.use(cors(corsOption));
+
 app.listen(PORT, ()=>{
-    console.log(`Backend is running on port ${PORT}...`)
+    connectDB();
+    console.log(`Backend is running on port ${PORT}...`);
 });
