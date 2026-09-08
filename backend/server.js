@@ -3,6 +3,7 @@ import express,{ urlencoded } from "express";
 import connectDB from './utils/db.js';
 import cookieParser from 'cookie-parser';
 import cors from "cors";
+import userRouter from "./routers/user.router.js"
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -24,6 +25,8 @@ const corsOption ={
     credentials: true
 };
 app.use(cors(corsOption));
+
+app.use("/api/v1/user",userRouter);
 
 app.listen(PORT, ()=>{
     connectDB();
