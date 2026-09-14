@@ -63,3 +63,50 @@ export const addNewPost = async(req, res)=>{
         });
     }
 };
+
+export const getAllPost = async (req, res) => {
+    try {
+        const posts = await Post.find().sort({createdAt:-1})
+        .populate({path:'author' , select:'username, profilePicture'})
+        .populate({
+            path:'comments',
+            sort:{createdAt:-1},
+            populate:{path:'author', select:'username, profilePicture'}
+        });
+        return res.status(200).json({
+            posts,
+            success:true
+        })
+    } catch (error) {
+         // console.log(error)
+        console.error('Error in getAllPost:', error);
+        return res.status(500).json({
+            success: false,
+            message: 'Internal server error. Please try again later.'
+        });
+    }
+}
+
+const getUserPost  = async (req, res) => {
+    try {
+        const authorId = req.id;
+    const posts = await Post.find({author: authorId}).sort({createdAt:-1})
+    .populate({path:'author' , select:'username, profilePicture'})
+    .populate({
+            path:'comments',
+            sort:{createdAt:-1},
+            populate:{path:'author', select:'username, profilePicture'}
+        });
+        return res.status(200).json({
+            posts,
+            success:true
+        })
+    } catch (error) {
+           // console.log(error)
+        console.error('Error in getUserPost:', error);
+        return res.status(500).json({
+            success: false,
+            message: 'Internal server error. Please try again later.'
+        });
+    }
+}
