@@ -36,7 +36,7 @@ export const sendMessage = async (req, res) => {
         // implement socket io for real time data transfer
 
 
-        return res. status(200).json({
+        return res. status(201).json({
             success: true,
             newMessage
         })
@@ -48,5 +48,35 @@ export const sendMessage = async (req, res) => {
       message: "Failed to fetch comments",
       success: false,
     });
+    }
+}
+
+export const getMessage = async (req, res) =>{
+    try {
+    const senderId = req.id;
+    const receiverId = req.params.id;
+
+    const conversation = await Conversation.findOne({
+      participants: { $all: [senderId, receiverId] },
+    }).populate("message");
+
+    if (!conversation) {
+      return res.status(200).json({
+        success: true,
+        message: [],
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: conversation?.message,
+    });
+    } catch (error) {
+           // console.log(error);
+    console.error("Error in getMessage:", error);
+    return res.status(500).json({
+      message: "Failed to fetch comments",
+      success: false,
+    }); 
     }
 }

@@ -229,8 +229,7 @@ export const followOrUnfollow = async (req, res)=>{
             });
         }else{
             await Promise.all([
-                // User.updateOne({_id:followerId}, {$push:{following:followeeId}}),   //$push works, but it can cause duplicate entries. To prevent this, useing $addToSet
-                // User.updateOne({_id:followeeId}, {$push:{followers:followerId}})
+               
                 User.updateOne({_id:followerId}, {$addToSet:{following:followeeId}}),
                 User.updateOne({_id:followeeId}, {$addToSet:{followers:followerId}})
             ]);
