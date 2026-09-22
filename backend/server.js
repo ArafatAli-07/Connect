@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import cors from "cors";
 import userRouter from "./routers/user.router.js"
 import postRouter from "./routers/post.router.js"
+import messageRouter from './routers/messages.router.js'
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -29,6 +30,7 @@ app.use(cors(corsOption));
 
 app.use("/api/v1/user",userRouter);
 app.use("/api/v1/post",postRouter);
+app.use("/api/v1/message",messageRouter);
 
 app.listen(PORT, ()=>{
     connectDB();
