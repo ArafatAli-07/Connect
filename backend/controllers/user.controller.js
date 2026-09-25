@@ -16,7 +16,7 @@ export const register = async (req, res) => {
     }
     const user = await User.findOne({ email });
     if (user) {
-      return res.status(401).json({
+      return res.status(409).json({
         message: "Try different email",
         success: false,
       });

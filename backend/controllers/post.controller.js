@@ -86,7 +86,7 @@ export const getAllPost = async (req, res) => {
     console.error("Error in getAllPost:", error);
     return res.status(500).json({
       success: false,
-      message: "Internal server error. Please try again later.",
+      message: "Failed to fetch posts.",
     });
   }
 };
@@ -111,7 +111,7 @@ export const getUserPost = async (req, res) => {
     console.error("Error in getUserPost:", error);
     return res.status(500).json({
       success: false,
-      message: "Internal server error. Please try again later.",
+      message: "Failed to fetch user posts",
     });
   }
 };
@@ -143,7 +143,7 @@ export const likePost = async (req, res) => {
     console.error("Error in likePost:", error);
     return res.status(500).json({
       success: false,
-      message: "Internal server error. Please try again later.",
+      message: "Failed to like post",
     });
   }
 };
@@ -175,7 +175,7 @@ export const disLikePost = async (req, res) => {
     console.error("Error in disLikePost:", error);
     return res.status(500).json({
       success: false,
-      message: "Internal server error. Please try again later.",
+      message: "Failed to like dispost",
     });
   }
 };
@@ -222,7 +222,7 @@ export const addComment = async (req, res) => {
     console.error("Error in addComment:", error);
     return res.status(500).json({
       success: false,
-      message: "Internal server error. Please try again later.",
+      message: "Failed to add comment.",
     });
   }
 };
@@ -295,7 +295,7 @@ export const deletePost = async (req, res) => {
     // console.log(error);
     console.error("Error in deletePost:", error);
     return res.status(500).json({
-      message: "Failed to fetch comments",
+      message: "Failed to delete post",
       success: false,
     });
   }

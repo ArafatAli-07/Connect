@@ -45,7 +45,7 @@ export const sendMessage = async (req, res) => {
         // console.log(error);
     console.error("Error in sendMessage:", error);
     return res.status(500).json({
-      message: "Failed to fetch comments",
+      message: "Failed to fetch sendMessage",
       success: false,
     });
     }
@@ -75,7 +75,7 @@ export const getMessage = async (req, res) =>{
            // console.log(error);
     console.error("Error in getMessage:", error);
     return res.status(500).json({
-      message: "Failed to fetch comments",
+      message: "Failed to fetch getMessage",
       success: false,
     }); 
     }
