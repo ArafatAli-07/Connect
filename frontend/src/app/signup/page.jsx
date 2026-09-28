@@ -17,6 +17,8 @@ const Signup = () => {
     password: "",
   });
 
+  const [loading, setloading] = useState(false)
+
   const changeEventHandler = (e) => {
     setinput({ ...input, [e.target.name]: e.target.value });
   }
@@ -27,6 +29,7 @@ const Signup = () => {
     e.preventDefault();
     // console.log(input);
     try {
+      setloading(true);
       const res = await axios.post('http://localhost:8000/api/v1/user/register', input , {
         headers:{
           'Content-Type':'application/json'
@@ -40,6 +43,8 @@ const Signup = () => {
     } catch (error) {
       // console.log(error);
       toast.error(error.response.data.message);
+    } finally{
+      setloading(false);
     }
   }
 
