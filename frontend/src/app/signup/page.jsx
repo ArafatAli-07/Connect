@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import axios from 'axios';
-import { UserPlus } from 'lucide-react';
+import { Loader2, UserPlus } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
@@ -17,7 +17,7 @@ const Signup = () => {
     password: "",
   });
 
-  const [loading, setloading] = useState(false)
+  const [loading, setloading] = useState(true)
 
   const changeEventHandler = (e) => {
     setinput({ ...input, [e.target.name]: e.target.value });
@@ -86,7 +86,12 @@ const Signup = () => {
             placeholder='Password'
             required
           />
-          <Button type='submit' className='bg-blue-400  border-blue-200 hover:border-2 p-4 font-bold font-serif text-md mt-3'><UserPlus size={18} />Sign Up</Button>
+          {loading ? (
+  <Button disabled={loading} type="submit" className="bg-blue-400 hover:bg-blue-400 border-blue-200 hover:border-2 p-4 font-bold font-serif text-md mt-3"><Loader2 className="animate-spin" />Loading...</Button>) 
+  : (
+  <Button type="submit" className="bg-blue-400 border-blue-200 hover:border-2 p-4 font-bold font-serif text-md mt-3"><UserPlus size={18} />Sign Up</Button>)
+}
+
 
           <span className="text-right text-xs text-gray-300 font-serif">
             {"Already have an account?"} <a href="/login" className="underline text-blue-400 mt-4 mr-3 font-bold font-serif">Login</a>
