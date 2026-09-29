@@ -17,7 +17,7 @@ const Signup = () => {
     password: "",
   });
 
-  const [loading, setloading] = useState(true)
+  const [loading, setloading] = useState(false)
 
   const changeEventHandler = (e) => {
     setinput({ ...input, [e.target.name]: e.target.value });

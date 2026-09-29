@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import axios from 'axios';
-import { LogIn } from 'lucide-react';
+import { Loader2, LogIn, UserPlus } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
@@ -16,6 +16,8 @@ const Signup = () => {
     password: "",
   });
 
+  const [loading, setloading] = useState(true)
+
   const changeEventHandler = (e) => {
     setinput({ ...input, [e.target.name]: e.target.value });
   }
@@ -26,19 +28,22 @@ const Signup = () => {
     e.preventDefault();
     // console.log(input);
     try {
-      const res = await axios.post('http://localhost:8000/api/v1/user/login', input , {
-        headers:{
-          'Content-Type':'application/json'
+      setloading(true);
+      const res = await axios.post('http://localhost:8000/api/v1/user/login', input, {
+        headers: {
+          'Content-Type': 'application/json'
         },
-        withCredentials:true
+        withCredentials: true
       });
-      if(res.data.success){
+      if (res.data.success) {
         toast.success(res.data.message);
         router.replace("/")
       }
     } catch (error) {
       // console.log(error);
       toast.error(error.response.data.message);
+    } finally {
+      setloading(false);
     }
   }
 
@@ -51,7 +56,7 @@ const Signup = () => {
           <p className='text-center text-gray-300 my-2'>Connect with friends and create memories.</p>
         </div>
         <div className='flex flex-col gap-3'>
-          
+
           <Label className="mt-3">Email</Label>
           <Input
             type='email'
@@ -71,7 +76,12 @@ const Signup = () => {
             placeholder='Password'
             required
           />
-          <Button type='submit' className='bg-blue-400  border-blue-200 hover:border-2 p-4 font-bold font-serif text-md mt-3'><LogIn size={18} />LogIn</Button>
+          {
+            loading ? (
+              <Button disabled={loading} type="submit" className="bg-blue-400 hover:bg-blue-400 border-blue-200 hover:border-2 p-4 font-bold font-serif text-md mt-3"><Loader2 className="animate-spin" />Loading...</Button>)
+              : (
+                <Button type="submit" className="bg-blue-400 border-blue-200 hover:border-2 p-4 font-bold font-serif text-md mt-3"><UserPlus size={18} />Sign Up</Button>)
+          }
 
           <span className="text-right text-xs text-gray-300 font-serif">
             {"Already have an account?"} <a href="/signup" className="underline text-blue-400 mt-4 mr-3 font-bold font-serif">Login</a>
