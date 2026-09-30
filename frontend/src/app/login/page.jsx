@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import axios from 'axios';
-import { Loader2, LogIn, UserPlus } from 'lucide-react';
+import { Loader2, LogIn } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
@@ -16,7 +16,7 @@ const Signup = () => {
     password: "",
   });
 
-  const [loading, setloading] = useState(true)
+  const [loading, setloading] = useState(false)
 
   const changeEventHandler = (e) => {
     setinput({ ...input, [e.target.name]: e.target.value });
@@ -80,7 +80,7 @@ const Signup = () => {
             loading ? (
               <Button disabled={loading} type="submit" className="bg-blue-400 hover:bg-blue-400 border-blue-200 hover:border-2 p-4 font-bold font-serif text-md mt-3"><Loader2 className="animate-spin" />Loading...</Button>)
               : (
-                <Button type="submit" className="bg-blue-400 border-blue-200 hover:border-2 p-4 font-bold font-serif text-md mt-3"><UserPlus size={18} />Sign Up</Button>)
+                <Button type="submit" className="bg-blue-400 border-blue-200 hover:border-2 p-4 font-bold font-serif text-md mt-3"><LogIn size={18} />Login</Button>)
           }
 
           <span className="text-right text-xs text-gray-300 font-serif">
