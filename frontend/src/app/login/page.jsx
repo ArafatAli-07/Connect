@@ -38,6 +38,10 @@ const Signup = () => {
       if (res.data.success) {
         toast.success(res.data.message);
         router.replace("/")
+        setinput({
+          email: "",
+          password: ""
+        })
       }
     } catch (error) {
       // console.log(error);
