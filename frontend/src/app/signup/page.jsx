@@ -30,20 +30,25 @@ const Signup = () => {
     // console.log(input);
     try {
       setloading(true);
-      const res = await axios.post('http://localhost:8000/api/v1/user/register', input , {
-        headers:{
-          'Content-Type':'application/json'
+      const res = await axios.post('http://localhost:8000/api/v1/user/register', input, {
+        headers: {
+          'Content-Type': 'application/json'
         },
-        withCredentials:true
+        withCredentials: true
       });
-      if(res.data.success){
+      if (res.data.success) {
         toast.success(res.data.message);
         router.replace("/login")
+        setinput({
+          username: "",
+          email: "",
+          password: ""
+        })
       }
     } catch (error) {
       // console.log(error);
       toast.error(error.response.data.message);
-    } finally{
+    } finally {
       setloading(false);
     }
   }
@@ -86,11 +91,12 @@ const Signup = () => {
             placeholder='Password'
             required
           />
-          {loading ? (
-  <Button disabled={loading} type="submit" className="bg-blue-400 hover:bg-blue-400 border-blue-200 hover:border-2 p-4 font-bold font-serif text-md mt-3"><Loader2 className="animate-spin" />Loading...</Button>) 
-  : (
-  <Button type="submit" className="bg-blue-400 border-blue-200 hover:border-2 p-4 font-bold font-serif text-md mt-3"><UserPlus size={18} />Sign Up</Button>)
-}
+          {
+            loading ? (
+              <Button disabled={loading} type="submit" className="bg-blue-400 hover:bg-blue-400 border-blue-200 hover:border-2 p-4 font-bold font-serif text-md mt-3"><Loader2 className="animate-spin" />Loading...</Button>)
+              : (
+                <Button type="submit" className="bg-blue-400 border-blue-200 hover:border-2 p-4 font-bold font-serif text-md mt-3"><UserPlus size={18} />Sign Up</Button>)
+          }
 
 
           <span className="text-right text-xs text-gray-300 font-serif">
