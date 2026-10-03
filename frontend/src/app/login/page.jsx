@@ -88,7 +88,7 @@ const Signup = () => {
           }
 
           <span className="text-right text-xs text-gray-300 font-serif">
-            {"Already have an account?"} <a href="/signup" className="underline text-blue-400 mt-4 mr-3 font-bold font-serif">Login</a>
+            {"Doesn't have an account?"} <a href="/signup" className="underline text-blue-400 mt-4 mr-3 font-bold font-serif">Login</a>
           </span>
         </div>
       </form>
