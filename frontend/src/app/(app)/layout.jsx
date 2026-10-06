@@ -3,7 +3,7 @@ import LeftSideBar from '../components/LeftSideBar'
 
 export default function layout ({children}){
   return (
-    <div>
+    <div className=''>
       <LeftSideBar/>
       {children}
     </div>

@@ -30,7 +30,7 @@ const Signup = () => {
     // console.log(input);
     try {
       setloading(true);
-      const res = await axios.post('http://localhost:8000/api/v1/user/register', input, {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/register`, input, {
         headers: {
           'Content-Type': 'application/json'
         },
