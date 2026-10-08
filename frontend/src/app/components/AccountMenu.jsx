@@ -11,7 +11,7 @@ const AccountMenu = () => {
     const router = useRouter();
 
     const menu = [
-        { icon: <LogOut />, text: "Signout" },
+        { icon: <LogOut />, text: "Logout" },
         { icon: <UsersRound />, text: "SwitchUser" }
     ]
 
@@ -28,8 +28,10 @@ const AccountMenu = () => {
     }
 
     const sidebarHandler = (textType) => {
-        if (textType == 'Signout') logoutHandler();
+        if (textType == 'Logout' || textType == "SwitchUser") logoutHandler();
     }
+
+
 
     return (
         <div className='border-gray-200 border min-w-[15vw] p-5 rounded-md mt-5'>
