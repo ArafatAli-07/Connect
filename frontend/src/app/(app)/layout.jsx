@@ -3,7 +3,7 @@ import LeftSideBar from '../components/LeftSideBar'
 
 export default function layout ({children}){
   return (
-    <div className=''>
+    <div className='flex'>
       <LeftSideBar/>
       {children}
     </div>

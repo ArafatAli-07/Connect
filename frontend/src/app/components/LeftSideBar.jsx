@@ -22,7 +22,9 @@ const LeftSideBar = () => {
       <div className=' flex flex-col items-center '>
         <h1>
           <Image className='w-60 h-35 mx-auto' src="/logo.png" alt="Logo" width={100} height={100} />
+          <hr/>
         </h1>
+          
         <div>
           {
             sidebarItems.map((item, index) => {
