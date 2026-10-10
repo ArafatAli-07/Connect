@@ -5,8 +5,8 @@ import RightSideBar from '../components/RightSideBar'
 
 const page = () => {
   return (
-    <div className='flex'>
-      <div className='flex'>
+    <div className='flex mx-auto'>
+      <div className='flex '>
         <Feed/>
         <Outlet/>
       </div>

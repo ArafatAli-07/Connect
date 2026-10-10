@@ -2,7 +2,7 @@ import React from 'react'
 
 const Outlet = () => {
   return (
-    <div>
+    <div className='flex'>
       Outlet
     </div>
   )
